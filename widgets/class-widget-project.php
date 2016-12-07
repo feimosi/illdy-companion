@@ -36,7 +36,7 @@ class Illdy_Widget_Project extends WP_Widget {
         $image_id = illdy_get_image_id_from_image_url( $image );
         $get_attachment_image_src = wp_get_attachment_image_src( $image_id, 'illdy-front-page-projects' );
 
-        $output = '<a href="'. $url .'" title="'. $title .'" class="project" style="background-image: url('. ( $image_id ? esc_url( $get_attachment_image_src[0] ) : get_template_directory_uri() . $image ) .');"><span class="project-overlay"></span></a>';
+        $output = '<a href="'. $url .'" title="'. $title .'" class="project" style="background-image: url('. ( $image_id ? esc_url( $get_attachment_image_src[0] ) : $image ) .');"><span class="project-overlay"></span></a>';
 
         echo $output;
 
