@@ -14,6 +14,40 @@
 
 define( 'ILLDY_COMPANION', '1.0.4' );
 
+add_filter( 'illdy_required_actions', 'illdy_companion_add_import_action' );
+
+function illdy_companion_check_content_import() {
+	$illdy_content = get_option( 'illdy_show_required_actions' );
+	if ( $illdy_content ) {
+		return true;
+	}
+
+	return false;
+}
+
+function illdy_companion_add_import_action( $actions ) {
+
+	$html = '<div id="demo_content">';
+
+	$html .= '<a href="#" class="button button-primary" data-action="import-all">'.__( 'I want my site to look like your demo', 'illdy-companion' ).'</a><span class="spinner"></span> ';
+
+	$html .= '<a href="#" class="button button-secondary" data-action="import-customizer">'.__( 'Import Customizer Setting', 'illdy-companion' ).'</a><span class="spinner"></span> ';
+	$html .= '<a href="#" class="button button-secondary" data-action="import-widgets">'.__( 'Import Widgets', 'illdy-companion' ).'</a><span class="spinner"></span> ';
+	$html .= '<div class="updated-message"><p>'.__( 'Content Imported', 'illdy-companion' ).'</p></div>';
+	$html .= '</div>';
+
+	$actions[] = array(
+					"id"          => 'illdy-req-ac-import-demo-content',
+					"title"       => esc_html__( 'Import Demo Content', 'illdy-companion' ),
+					"description" => esc_html__( 'You have 3 different option.', 'illdy-companion' ),
+					"help"        => $html,
+					"check"       => illdy_companion_check_content_import()
+				);
+
+	return $actions;
+
+}
+
 /**
  * Plugin companion widgets
  */
@@ -174,16 +208,6 @@ if ( ! function_exists( 'illdy_companion_admin_scripts' ) ) {
 	}
 
 	add_action( 'admin_enqueue_scripts', 'illdy_companion_admin_scripts' );
-}
-
-if ( ! function_exists( 'illdy_companion_demo_tab' ) ) {
-
-	function illdy_companion_demo_tab() {
-		include 'illdy-demo-content.php';
-	}
-
-	// hook our function
-	add_action( 'illdy_welcome', 'illdy_companion_demo_tab' );
 }
 
 if ( ! function_exists( 'illdy_companion_import_content' ) ) {
