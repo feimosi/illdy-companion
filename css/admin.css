@@ -1,10 +1,11 @@
 #demo_content {
 	text-align: left;
 }
-#demo_content .spinner {
+#demo_content .spinner,
+.frontpage-spinner {
 	float: none;
 }
-#demo_content .updated-message,
+.updated-message,
 #demo_content .spinner {
 	display: none;
 }
