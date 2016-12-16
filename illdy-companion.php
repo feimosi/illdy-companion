@@ -39,9 +39,17 @@ function illdy_companion_add_import_action( $actions ) {
 	$actions[] = array(
 					"id"          => 'illdy-req-ac-import-demo-content',
 					"title"       => esc_html__( 'Import Demo Content', 'illdy-companion' ),
-					"description" => esc_html__( 'You have 3 different option.', 'illdy-companion' ),
+					"description" => esc_html__( 'You have 3 different options. The quickest way to set-up this theme is if you click the big blue button and "make your website look like our demo". If you know what you\'re doing, you can manually import the demo settings for the customizer as well as for the widgets.', 'illdy-companion' ),
 					"help"        => $html,
 					"check"       => illdy_companion_check_content_import()
+				);
+
+	$actions[] = array(
+					"id"          => 'illdy-req-ac-static-latest-news',
+					"title"       => esc_html__( 'Set front page to static', 'illdy-companion' ),
+					"description" => esc_html__( 'If you just installed Illdy, and are not able to see the front-page demo, you need to go to Settings -> Reading , Front page displays and select "Static Page".', 'illdy-companion' ),
+					"help"        => 'If you need more help understanding how this works, check out the following <a target="_blank"  href="https://codex.wordpress.org/Creating_a_Static_Front_Page#WordPress_Static_Front_Page_Process">link</a>. <br/><br/> <a class="button button-secondary" target="_blank"  href="' . self_admin_url( 'options-reading.php' ) . '">' . __( 'Set manually', 'illdy-companion' ) . '</a> <a id="set-static-page" class="button button-primary"  href="#">' . __( 'Set automatically', 'illdy' ) . '</a><span class="spinner frontpage-spinner"></span><div class="updated-message"><p>'.__( 'Static Front Page setted', 'illdy-companion' ).'</p></div>',
+					"check"       => MT_Notify_System::is_not_static_page()
 				);
 
 	return $actions;
@@ -259,6 +267,31 @@ if ( ! function_exists( 'illdy_companion_import_content' ) ) {
 
 	// hook our function
 	add_action( 'wp_ajax_illdy_companion_import_content', 'illdy_companion_import_content' );
+}
+
+if ( ! function_exists( 'illdy_companion_set_static_frontpage' ) ) {
+
+function illdy_companion_set_static_frontpage() {
+
+	$frontpage_args = array(
+	    'post_title'    => __( 'Homepage', 'illdy-companion' ),
+	    'post_status'   => 'publish',
+	    'post_author'   => 1,
+	    'post_type'		=> 'page'
+	);
+	 
+	$page_id = wp_insert_post( $frontpage_args );
+	
+	update_option( 'show_on_front', 'page' );
+	update_option( 'page_on_front', $page_id );
+
+	echo 'succes';
+	exit();
+
+}
+
+add_action( 'wp_ajax_illdy_companion_set_frontpage', 'illdy_companion_set_static_frontpage' );
+
 }
 
 if ( ! function_exists( 'illdy_companion_customize_register' ) ) {

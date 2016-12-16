@@ -12,7 +12,6 @@ jQuery(document).ready(function(){
             data       : ajaxData,
             url        : illdyCompanion.ajaxurl,
             success    : function(data){
-            	console.log(data);
             	if ( data == 'succes' ) {
             		currentButton.removeClass('disabled');
             		currentButton.next('.spinner').removeClass('is-active');
@@ -23,4 +22,26 @@ jQuery(document).ready(function(){
         });
 
 	});
+
+      jQuery('#set-static-page').click(function(evt){
+            evt.preventDefault();
+            var currentButton = jQuery(this);
+            jQuery(this).addClass('disabled');
+            jQuery(this).next('.spinner').addClass('is-active');
+            var ajaxData = { action: 'illdy_companion_set_frontpage' };
+
+            jQuery.ajax({
+                  type       : "POST",
+                  data       : ajaxData,
+                  url        : illdyCompanion.ajaxurl,
+                  success    : function(data){
+                        if ( data == 'succes' ) {
+                              currentButton.removeClass('disabled');
+                              currentButton.next('.spinner').removeClass('is-active');
+                              currentButton.parent().parent().find('.updated-message').show();
+                        }
+                  },
+            });
+      });
+
 });
