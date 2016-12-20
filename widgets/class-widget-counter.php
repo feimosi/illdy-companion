@@ -56,13 +56,13 @@ class Illdy_Widget_Counter extends WP_Widget {
 
         <p>
             <label for="<?php echo $this->get_field_id( 'data_from' ); ?>"><?php _e( 'Data from:', 'illdy' ); ?></label>
-            <span class="widefat" style="font-style: italic; display: block;"><?php _e( 'The number the element should start at.', 'illdy' ); ?></span>
+            <span class="widefat" style="font-style: italic; display: block;"><?php _e( 'Counter should start at', 'illdy' ); ?></span>
             <input class="widefat" id="<?php echo $this->get_field_id( 'data_from' ); ?>" name="<?php echo $this->get_field_name( 'data_from' ); ?>" type="number" value="<?php echo esc_attr( $data_from ); ?>">
         </p>
 
         <p>
             <label for="<?php echo $this->get_field_id( 'data_to' ); ?>"><?php _e( 'Data to:', 'illdy' ); ?></label>
-            <span class="widefat" style="font-style: italic; display: block;"><?php _e( 'The number the element should end at.', 'illdy' ); ?></span>
+            <span class="widefat" style="font-style: italic; display: block;"><?php _e( 'Counter should end at', 'illdy' ); ?></span>
             <input class="widefat" id="<?php echo $this->get_field_id( 'data_to' ); ?>" name="<?php echo $this->get_field_name( 'data_to' ); ?>" type="number" value="<?php echo esc_attr( $data_to ); ?>">
         </p>
 
