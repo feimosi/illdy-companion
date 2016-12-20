@@ -33,6 +33,7 @@ class Illdy_Widget_Person extends WP_Widget {
             ( function( $ ){
                 function initColorPicker( widget ) {
                     widget.find( '.color-picker' ).wpColorPicker( {
+                        defaultColor : '#f1d204',
                         change: _.throttle( function() { // For Customizer
                             $(this).trigger( 'change' );
                         }, 3000 )

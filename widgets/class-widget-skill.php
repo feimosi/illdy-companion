@@ -39,6 +39,7 @@ class Illdy_Widget_Skill extends WP_Widget {
             ( function( $ ){
                 function initColorPicker( widget ) {
                     widget.find( '.color-picker' ).wpColorPicker( {
+                        defaultColor : '#f1d204',
                         change: _.throttle( function() { // For Customizer
                             $(this).trigger( 'change' );
                         }, 3000 )
@@ -75,7 +76,7 @@ class Illdy_Widget_Skill extends WP_Widget {
         $title = ( !empty( $instance['title'] ) ? esc_html( $instance['title'] ) : '' );
         $percentage = ( !empty( $instance['percentage'] ) ? absint( $instance['percentage'] ) : '' );
         $icon = ( !empty( $instance['icon'] ) ? esc_attr( $instance['icon'] ) : '' );
-        $color = ( !empty( $instance['color'] ) ? esc_attr( $instance['color'] ) : '#000000' );
+        $color = ( !empty( $instance['color'] ) ? esc_attr( $instance['color'] ) : '#0385d0' );
 
         $output = '';
 

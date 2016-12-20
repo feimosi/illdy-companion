@@ -6,6 +6,13 @@ class Illdy_Widget_Recent_Posts extends WP_Widget {
      */
     function __construct() {
         parent::__construct( 'illdy_recent_posts', __( '[Illdy] - Recent Posts', 'illdy' ), array( 'description' => __( 'Thiw widget will display the latest posts with thumbnail image on the left side.', 'illdy' ), ) );
+
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+    }
+
+
+    public function enqueue_scripts(){
+        wp_enqueue_style( 'epsilon-styles', get_template_directory_uri() . '/inc/customizer/assets/css/illdy-customizer.css' );
     }
 
     /**
@@ -81,10 +88,15 @@ class Illdy_Widget_Recent_Posts extends WP_Widget {
         $numberofposts = !empty( $instance['numberofposts'] ) ? absint( $instance['numberofposts'] ) : __( '4', 'illdy' );
         ?>
 
-        <p>
-            <input class="checkbox" type="checkbox" <?php if( $display_title == 'on' ): echo 'checked="checked"'; endif; ?> id="<?php echo $this->get_field_id( 'display_title' ); ?>" name="<?php echo $this->get_field_name( 'display_title' ); ?>" /> 
-            <label for="<?php echo $this->get_field_id( 'display_title' ); ?>"><?php _e( 'Display title?', 'illdy' ); ?></label>
-        </p>
+        <div class="checkbox_switch" style="margin-top:15px;margin-bottom: 0;">
+            <span class="customize-control-title onoffswitch_label"><?php _e( 'Display title?', 'illdy' ); ?></span>
+            <div class="onoffswitch">
+                <input type="checkbox" id="<?php echo $this->get_field_id( 'display_title' ); ?>"
+                       name="<?php echo $this->get_field_name( 'display_title' ); ?>" class="onoffswitch-checkbox"
+                       value="1" <?php checked( $display_title ); ?>>
+                <label class="onoffswitch-label" for="<?php echo $this->get_field_id( 'display_title' ); ?>"></label>
+            </div>
+        </div>
 
         <p>
             <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'illdy' ); ?></label>
