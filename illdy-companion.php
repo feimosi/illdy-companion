@@ -403,11 +403,31 @@ if ( ! function_exists( 'illdy_companion_customize_register' ) ) {
 			$wp_customize->add_control( $prefix . '_projects_general_entry', array(
 				'label'       => __( 'Entry', 'illdy-companion' ),
 				'description' => __( 'Add the content for this section.', 'illdy-companion' ),
-				'section'     => $prefix . '_projects_general',
+				'section'     => $prefix . '_panel_projects',
 				'priority'    => 3,
 				'type'        => 'textarea',
 			) );
 
+		}
+
+		if ( ! $wp_customize->get_setting( $prefix . '_contact_us_entry' ) ) {
+			$wp_customize->add_setting( $prefix .'_contact_us_entry',
+		        array(
+		            'sanitize_callback' => 'illdy_sanitize_html',
+		            'default'           => __( 'And we will get in touch as soon as possible.', 'illdy' ),
+		            'transport'         => 'postMessage'
+		        )
+		    );
+		    $wp_customize->add_control(
+		        $prefix .'_contact_us_entry',
+		        array(
+		            'label'         => __( 'Entry', 'illdy' ),
+		            'description'   => __( 'Add the content for this section.', 'illdy'),
+		            'section'       => $prefix . '_contact_us',
+		            'priority'      => 3,
+		            'type'          => 'textarea'
+		        )
+		    );
 		}
 
 	}
