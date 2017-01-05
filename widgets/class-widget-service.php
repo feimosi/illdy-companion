@@ -100,9 +100,9 @@ class Illdy_Widget_Service extends WP_Widget {
             $output .= '<div class="service-icon">';
                   $output .= '<i class="fa '. $icon .'"></i>';
             $output .= '</div><!--/.service-icon-->';
-            $output .= '<div class="service-title">';
+            $output .= '<div class="service-title"><h5>';
                   $output .= $title;
-            $output .= '</div><!--/.service-title-->';
+            $output .= '</h5></div><!--/.service-title-->';
             $output .= '<div class="service-entry">';
                 $output .= $entry;
             $output .= '</div><!--/.service-entry-->';
