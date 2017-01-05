@@ -29,7 +29,7 @@ class Illdy_Widget_Recent_Posts extends WP_Widget {
         $display_title = !empty( $instance['display_title'] ) ? $instance['display_title'] : '';
         $numberofposts = !empty( $instance['numberofposts'] ) ? absint( $instance['numberofposts'] ) : '';
 
-        if( $display_title == 'on' ) {
+        if( $display_title ) {
             if ( !empty( $instance['title'] ) ) {
                 echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ). $args['after_title'];
             }
