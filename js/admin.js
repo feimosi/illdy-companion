@@ -16,6 +16,8 @@ jQuery(document).ready(function(){
             		currentButton.removeClass('disabled');
             		currentButton.next('.spinner').removeClass('is-active');
             		currentButton.parent().parent().find('.updated-message').show();
+                        var element = currentButton.parents('.epsilon-recommeded-actions-container');
+                        element.parent().trigger('actions_complete', element);
             	}
             },
 
@@ -29,7 +31,6 @@ jQuery(document).ready(function(){
             jQuery(this).addClass('disabled');
             jQuery(this).next('.spinner').addClass('is-active');
             var ajaxData = { action: 'illdy_companion_set_frontpage' };
-
             jQuery.ajax({
                   type       : "POST",
                   data       : ajaxData,
@@ -39,6 +40,8 @@ jQuery(document).ready(function(){
                               currentButton.removeClass('disabled');
                               currentButton.next('.spinner').removeClass('is-active');
                               currentButton.parent().parent().find('.updated-message').show();
+                              var element = currentButton.parents('.epsilon-recommeded-actions-container');
+                              element.parent().trigger('actions_complete', element);
                         }
                   },
             });

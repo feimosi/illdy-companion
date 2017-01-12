@@ -29,6 +29,8 @@ class Illdy_Widget_Project extends WP_Widget {
     public function widget( $args, $instance ) {
         echo $args['before_widget'];
 
+        $lightbox = get_theme_mod( 'illdy_projects_lightbox', false );
+
         $title = ( !empty( $instance['title'] ) ? esc_html( $instance['title'] ) : '' );
         $image = !empty( $instance['image'] ) ? esc_url( $instance['image'] ) : '';
         $url = !empty( $instance['url'] ) ? sanitize_text_field( $instance['url'] ) : esc_url( '#' );
@@ -36,7 +38,21 @@ class Illdy_Widget_Project extends WP_Widget {
         $image_id = illdy_get_image_id_from_image_url( $image );
         $get_attachment_image_src = wp_get_attachment_image_src( $image_id, 'illdy-front-page-projects' );
 
-        $output = '<a href="'. $url .'" title="'. $title .'" class="project" style="background-image: url('. ( $image_id ? esc_url( $get_attachment_image_src[0] ) : $image ) .');"><span class="project-overlay"></span></a>';
+        $class = 'project';
+        $attr = '';
+
+        if ( $lightbox ) {
+                if ( $image_id ) {
+                    $url = wp_get_attachment_image_src( $image_id, 'full' );
+                }else{
+                    $url = $image;
+                }
+            
+            $class .= ' fancybox';
+            $attr = ' rel="projects-gallery"';
+        }
+
+        $output = '<a href="'. $url .'" title="'. $title .'" class="'.$class.'"'.$attr.' style="background-image: url('. ( $image_id ? esc_url( $get_attachment_image_src[0] ) : $image ) .');"><span class="project-overlay"></span></a>';
 
         echo $output;
 
