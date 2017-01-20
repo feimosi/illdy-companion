@@ -67,6 +67,7 @@ require_once plugin_dir_path( __FILE__ ) . 'widgets/class-widget-project.php';
 require_once plugin_dir_path( __FILE__ ) . 'widgets/class-widget-service.php';
 require_once plugin_dir_path( __FILE__ ) . 'widgets/class-widget-counter.php';
 require_once plugin_dir_path( __FILE__ ) . 'widgets/class-widget-person.php';
+require_once plugin_dir_path( __FILE__ ) . 'widgets/class-widget-parallax.php';
 
 if ( ! function_exists( 'illdy_companion_add_default_widgets' ) ) {
 	/**
@@ -463,3 +464,12 @@ if ( ! function_exists( 'illdy_companion_customize_register' ) ) {
 	// hook our function
 	add_action( 'customize_register', 'illdy_companion_customize_register' );
 }
+function illdy_get_attachment_image() {
+	$id  = intval( $_POST['attachment_id'] );
+	$src = wp_get_attachment_image_src( $id, 'full', false );
+	if ( ! empty( $src[0] ) ) {
+		echo esc_url( $src[0] );
+	}
+	die();
+}
+add_action( 'wp_ajax_illdy_get_attachment_media', 'illdy_get_attachment_image' );
