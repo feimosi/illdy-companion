@@ -68,6 +68,7 @@ require_once plugin_dir_path( __FILE__ ) . 'widgets/class-widget-service.php';
 require_once plugin_dir_path( __FILE__ ) . 'widgets/class-widget-counter.php';
 require_once plugin_dir_path( __FILE__ ) . 'widgets/class-widget-person.php';
 require_once plugin_dir_path( __FILE__ ) . 'widgets/class-widget-parallax.php';
+require_once plugin_dir_path( __FILE__ ) . 'widgets/class-widget-testimonial.php';
 
 if ( ! function_exists( 'illdy_companion_add_default_widgets' ) ) {
 	/**
@@ -337,34 +338,36 @@ if ( ! function_exists( 'illdy_companion_customize_register' ) ) {
 		if ( ! $wp_customize->get_setting( $prefix . '_services_general_entry' ) ) {
 
 			$wp_customize->add_setting( $prefix . '_services_general_entry', array(
-				'sanitize_callback' => 'illdy_sanitize_html',
+				'sanitize_callback' => 'wp_kses_post',
 				'default'           => __( 'In order to help you grow your business, our carefully selected experts can advise you in in the following areas:', 'illdy-companion' ),
 				'transport'         => 'postMessage',
 			) );
-			$wp_customize->add_control( $prefix . '_services_general_entry', array(
+			$wp_customize->add_control(  new Epsilon_Editor_Custom_Control(
+        		$wp_customize, $prefix . '_services_general_entry', array(
 				'label'       => __( 'Entry', 'illdy-companion' ),
 				'description' => __( 'Add the content for this section.', 'illdy-companion' ),
 				'section'     => $prefix . '_panel_services',
 				'priority'    => 3,
 				'type'        => 'textarea',
-			) );
+			) ) );
 
 		}
 
 		if ( ! $wp_customize->get_setting( $prefix . '_team_general_entry' ) ) {
 
 			$wp_customize->add_setting( $prefix . '_team_general_entry', array(
-				'sanitize_callback' => 'illdy_sanitize_html',
+				'sanitize_callback' => 'wp_kses_post',
 				'default'           => __( 'Meet the people that are going to take your business to the next level.', 'illdy-companion' ),
 				'transport'         => 'postMessage',
 			) );
-			$wp_customize->add_control( $prefix . '_team_general_entry', array(
+			$wp_customize->add_control(  new Epsilon_Editor_Custom_Control(
+        		$wp_customize, $prefix . '_team_general_entry', array(
 				'label'       => __( 'Entry', 'illdy-companion' ),
 				'description' => __( 'Add the content for this section.', 'illdy-companion' ),
 				'section'     => $prefix . '_panel_team',
 				'priority'    => 3,
 				'type'        => 'textarea',
-			) );
+			) ) );
 
 		}
 
@@ -372,17 +375,17 @@ if ( ! function_exists( 'illdy_companion_customize_register' ) ) {
 		if ( ! $wp_customize->get_setting( $prefix . '_about_general_entry' ) ) {
 
 			$wp_customize->add_setting( $prefix . '_about_general_entry', array(
-				'sanitize_callback' => 'illdy_sanitize_html',
+				'sanitize_callback' => 'wp_kses_post',
 				'default'           => __( 'It is an amazing one-page theme with great features that offers an incredible experience. It is easy to install, make changes, adapt for your business. A modern design with clean lines and styling for a wide variety of content, exactly how a business design should be. You can add as many images as you want to the main header area and turn them into slider.', 'illdy-companion' ),
 				'transport'         => 'postMessage',
 			) );
-			$wp_customize->add_control( $prefix . '_about_general_entry', array(
+			$wp_customize->add_control(  new Epsilon_Editor_Custom_Control(
+        		$wp_customize, $prefix . '_about_general_entry', array(
 				'label'       => __( 'Entry', 'illdy-companion' ),
 				'description' => __( 'Add the content for this section.', 'illdy-companion' ),
 				'section'     => $prefix . '_panel_about',
 				'priority'    => 3,
-				'type'        => 'textarea',
-			) );
+			) ) );
 
 		}
 
@@ -390,17 +393,17 @@ if ( ! function_exists( 'illdy_companion_customize_register' ) ) {
 		if ( ! $wp_customize->get_setting( $prefix . '_jumbotron_general_entry' ) ) {
 
 			$wp_customize->add_setting( $prefix . '_jumbotron_general_entry', array(
-				'sanitize_callback' => 'illdy_sanitize_html',
+				'sanitize_callback' => 'wp_kses_post',
 				'default'           => __( 'lldy is a great one-page theme, perfect for developers and designers but also for someone who just wants a new website for his business. Try it now!', 'illdy-companion' ),
 				'transport'         => 'postMessage',
 			) );
-			$wp_customize->add_control( $prefix . '_jumbotron_general_entry', array(
+			$wp_customize->add_control(  new Epsilon_Editor_Custom_Control(
+        		$wp_customize, $prefix . '_jumbotron_general_entry', array(
 				'label'       => __( 'Entry', 'illdy-companion' ),
 				'description' => __( 'The content added in this field will show below title.', 'illdy-companion' ),
 				'section'     => $prefix . '_jumbotron_general',
 				'priority'    => 5,
-				'type'        => 'textarea',
-			) );
+			) ) );
 
 		}
 
@@ -408,61 +411,61 @@ if ( ! function_exists( 'illdy_companion_customize_register' ) ) {
 		if ( ! $wp_customize->get_setting( $prefix . '_latest_news_general_entry' ) ) {
 
 			$wp_customize->add_setting( $prefix . '_latest_news_general_entry', array(
-				'sanitize_callback' => 'illdy_sanitize_html',
+				'sanitize_callback' => 'wp_kses_post',
 				'default'           => __( 'If you are interested in the latest articles in the industry, take a sneak peek at our blog. You have nothing to loose!', 'illdy-companion' ),
 				'transport'         => 'postMessage',
 			) );
-			$wp_customize->add_control( $prefix . '_latest_news_general_entry', array(
+			$wp_customize->add_control(  new Epsilon_Editor_Custom_Control(
+        		$wp_customize, $prefix . '_latest_news_general_entry', array(
 				'label'       => __( 'Entry', 'illdy-companion' ),
 				'description' => __( 'Add the content for this section.', 'illdy-companion' ),
 				'section'     => $prefix . '_latest_news_general',
 				'priority'    => 3,
-				'type'        => 'textarea',
-			) );
+			) ) );
 
 		}
 
 		if ( ! $wp_customize->get_setting( $prefix . '_projects_general_entry' ) ) {
 
 			$wp_customize->add_setting( $prefix . '_projects_general_entry', array(
-				'sanitize_callback' => 'illdy_sanitize_html',
+				'sanitize_callback' => 'wp_kses_post',
 				'default'           => __( 'You\'ll love our work. Check it out!', 'illdy-companion' ),
 				'transport'         => 'postMessage',
 			) );
-			$wp_customize->add_control( $prefix . '_projects_general_entry', array(
+			$wp_customize->add_control( new Epsilon_Editor_Custom_Control(
+        		$wp_customize, $prefix . '_projects_general_entry', array(
 				'label'       => __( 'Entry', 'illdy-companion' ),
 				'description' => __( 'Add the content for this section.', 'illdy-companion' ),
 				'section'     => $prefix . '_panel_projects',
 				'priority'    => 3,
-				'type'        => 'textarea',
-			) );
+			) ) );
 
 		}
 
 		if ( ! $wp_customize->get_setting( $prefix . '_contact_us_entry' ) ) {
 			$wp_customize->add_setting( $prefix .'_contact_us_entry',
 		        array(
-		            'sanitize_callback' => 'illdy_sanitize_html',
+		            'sanitize_callback' => 'wp_kses_post',
 		            'default'           => __( 'And we will get in touch as soon as possible.', 'illdy' ),
 		            'transport'         => 'postMessage'
 		        )
 		    );
-		    $wp_customize->add_control(
+		    $wp_customize->add_control( new Epsilon_Editor_Custom_Control(
+        		$wp_customize, 
 		        $prefix .'_contact_us_entry',
 		        array(
 		            'label'         => __( 'Entry', 'illdy' ),
 		            'description'   => __( 'Add the content for this section.', 'illdy'),
 		            'section'       => $prefix . '_contact_us',
 		            'priority'      => 3,
-		            'type'          => 'textarea'
-		        )
+		        ) )
 		    );
 		}
 
 	}
 
 	// hook our function
-	add_action( 'customize_register', 'illdy_companion_customize_register' );
+	add_action( 'customize_register', 'illdy_companion_customize_register', 20 );
 }
 function illdy_get_attachment_image() {
 	$id  = intval( $_POST['attachment_id'] );
