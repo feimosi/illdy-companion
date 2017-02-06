@@ -44,6 +44,7 @@ class Illdy_Widget_Project extends WP_Widget {
         if ( $lightbox ) {
                 if ( $image_id ) {
                     $url = wp_get_attachment_image_src( $image_id, 'full' );
+                    $url = $url[0];
                 }else{
                     $url = $image;
                 }

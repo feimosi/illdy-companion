@@ -45,7 +45,8 @@ jQuery(function ($) {
 					$(mediaControl.container).find('img').attr('src', response);
 				}
 
-				selector.val(response).change();
+				selector.val(response);
+				selector.trigger('change');
 			});
 		},
 
@@ -72,7 +73,6 @@ jQuery(function ($) {
 
 				img.attr('src', '');
 				span.text('');
-				console.log(span);
 				sibling.val('').trigger('change');
 			})
 		}
