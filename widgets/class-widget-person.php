@@ -83,7 +83,7 @@ class Illdy_Widget_Person extends WP_Widget {
 
         $output .= '<div class="person clearfix" data-person-color="'. $color .'">';
             $output .= '<div class="person-image">';
-                $output .= ( $image_id ? '<img src="'. $get_attachment_image_src[0] .'" alt="'. $title .'" title="'. $title .'" />' : ( $image ? '<img src="'. get_template_directory_uri() . $image .'" alt="'. $title .'" title="'. $title .'" />' : '' ) );
+                $output .= ( $image_id ? '<img src="'. $get_attachment_image_src[0] .'" alt="'. $title .'" title="'. $title .'" />' : ( $image ? '<img src="'. $image .'" alt="'. $title .'" title="'. $title .'" />' : '' ) );
             $output .= '</div><!--/.person-image-->';
             $output .= '<div class="person-content">';
                 $output .= '<h6>'. $title .'</h6>';
