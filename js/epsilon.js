@@ -27,7 +27,6 @@ jQuery(function ($) {
 			var id = $('.attachments').find('.selected').attr('data-id');
 			var selector = $('.illdy-media-control').find(mediaControl.selector);
 
-			console.log($('.attachments').find('.selected'));
 			if ( !selector.length ) {
 				return false;
 			}
