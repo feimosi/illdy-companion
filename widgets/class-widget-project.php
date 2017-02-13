@@ -33,12 +33,16 @@ class Illdy_Widget_Project extends WP_Widget {
 
         $title = ( !empty( $instance['title'] ) ? esc_html( $instance['title'] ) : '' );
         $image = !empty( $instance['image'] ) ? esc_url( $instance['image'] ) : '';
-        $url = !empty( $instance['url'] ) ? sanitize_text_field( $instance['url'] ) : esc_url( '#' );
+        $url = !empty( $instance['url'] ) ? sanitize_text_field( $instance['url'] ) : '';
 
         $image_id = illdy_get_image_id_from_image_url( $image );
         $get_attachment_image_src = wp_get_attachment_image_src( $image_id, 'illdy-front-page-projects' );
 
         $class = 'project';
+
+        if ( $url == '' ) {
+            $class .= ' no-url';
+        }
         $attr = '';
 
         if ( $lightbox ) {
@@ -70,7 +74,7 @@ class Illdy_Widget_Project extends WP_Widget {
     public function form( $instance ) {
         $title = !empty( $instance['title'] ) ? sanitize_text_field( $instance['title'] ) : __( '[Illdy] - Project', 'illdy' );
         $image = !empty( $instance['image'] ) ? esc_url( $instance['image'] ) : '';
-        $url = !empty( $instance['url'] ) ? sanitize_text_field( $instance['url'] ) : esc_url( '#' );
+        $url = !isset( $instance['url'] ) ? sanitize_text_field( $instance['url'] ) : '';
         ?>
         <p>
             <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'illdy' ); ?></label>
