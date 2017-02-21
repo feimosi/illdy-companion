@@ -18,6 +18,9 @@ jQuery(document).ready(function(){
             		currentButton.parent().parent().find('.updated-message').show();
                         var element = currentButton.parents('.epsilon-recommeded-actions-container');
                         element.parent().trigger('actions_complete', element);
+                        if ( typeof wp.customize != undefined ) {
+                              location.reload();
+                        }
             	}
             },
 
