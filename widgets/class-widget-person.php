@@ -72,6 +72,7 @@ class Illdy_Widget_Person extends WP_Widget {
         $position = ( !empty( $instance['position'] ) ? esc_html( $instance['position'] ) : '' );
         $entry = ( !empty( $instance['entry'] ) ? esc_html( $instance['entry'] ) : '' );
         $facebook_url = !empty( $instance['facebook_url'] ) ? esc_url( $instance['facebook_url'] ) : '';
+        $github_url = !empty( $instance['github_url'] ) ? esc_url( $instance['github_url'] ) : '';
         $twitter_url = !empty( $instance['twitter_url'] ) ? esc_url( $instance['twitter_url'] ) : '';
         $linkedin_url = !empty( $instance['linkedin_url'] ) ? esc_url( $instance['linkedin_url'] ) : '';
         $color = ( !empty( $instance['color'] ) ? esc_attr( $instance['color'] ) : '#000000' );
@@ -91,6 +92,7 @@ class Illdy_Widget_Person extends WP_Widget {
                 $output .= '<p>'. $entry .'</p>';
                 $output .= '<ul class="person-content-social clearfix">';
                     $output .= ( $facebook_url ) ? '<li><a href="'. $facebook_url .'" title="'. __( 'Facebook', 'illdy' ) .'" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a></li>' : '';
+                    $output .= ( $github_url ) ? '<li><a href="'. $github_url .'" title="'. __( 'GitHub', 'illdy' ) .'" target="_blank" rel="nofollow"><i class="fa fa-github"></i></a></li>' : '';
                     $output .= ( $twitter_url ) ? '<li><a href="'. $twitter_url .'" title="'. __( 'Twitter', 'illdy' ) .'"><i class="fa fa-twitter" target="_blank" rel="nofollow"></i></a></li>' : '';
                     $output .= ( $linkedin_url ) ? '<li><a href="'. $linkedin_url .'" title="'. __( 'LinkedIn', 'illdy' ) .'"><i class="fa fa-linkedin" target="_blank" rel="nofollow"></i></a></li>' : '';
                 $output .= '</ul><!--/.person-content-social.clearfix-->';
@@ -115,6 +117,7 @@ class Illdy_Widget_Person extends WP_Widget {
         $position = ! empty( $instance['position'] ) ? sanitize_text_field( $instance['position'] ) : '';
         $entry = ! empty( $instance['entry'] ) ? sanitize_text_field( $instance['entry'] ) : '';
         $facebook_url = !empty( $instance['facebook_url'] ) ? esc_url( $instance['facebook_url'] ) : '';
+        $github_url = !empty( $instance['github_url'] ) ? esc_url( $instance['github_url'] ) : '';
         $twitter_url = !empty( $instance['twitter_url'] ) ? esc_url( $instance['twitter_url'] ) : '';
         $linkedin_url = !empty( $instance['linkedin_url'] ) ? esc_url( $instance['linkedin_url'] ) : '';
         $color = !empty( $instance['color'] ) ? esc_attr( $instance['color'] ) : '';
@@ -144,6 +147,11 @@ class Illdy_Widget_Person extends WP_Widget {
         <p>
             <label for="<?php echo $this->get_field_id( 'facebook_url' ); ?>"><?php _e( 'Facebook URL:', 'illdy' ); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id( 'facebook_url' ); ?>" name="<?php echo $this->get_field_name( 'facebook_url' ); ?>" type="text" value="<?php echo esc_attr( $facebook_url ); ?>">
+        </p>
+
+        <p>
+            <label for="<?php echo $this->get_field_id( 'github_url' ); ?>"><?php _e( 'GitHub URL:', 'illdy' ); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'github_url' ); ?>" name="<?php echo $this->get_field_name( 'github_url' ); ?>" type="text" value="<?php echo esc_attr( $github_url ); ?>">
         </p>
 
         <p>
@@ -180,6 +188,7 @@ class Illdy_Widget_Person extends WP_Widget {
         $instance['position'] = ( !empty( $new_instance['position'] ) ) ? esc_html( $new_instance['position'] ) : '';
         $instance['entry'] = ( !empty( $new_instance['entry'] ) ) ? esc_html( $new_instance['entry'] ) : '';
         $instance['facebook_url'] = ( !empty( $new_instance['facebook_url'] ) ? esc_url( $new_instance['facebook_url'] ) : '' );
+        $instance['github_url'] = ( !empty( $new_instance['github_url'] ) ? esc_url( $new_instance['github_url'] ) : '' );
         $instance['twitter_url'] = ( !empty( $new_instance['twitter_url'] ) ? esc_url( $new_instance['twitter_url'] ) : '' );
         $instance['linkedin_url'] = ( !empty( $new_instance['linkedin_url'] ) ? esc_url( $new_instance['linkedin_url'] ) : '' );
         $instance['color'] = ( !empty( $new_instance['color'] ) ? esc_html( $new_instance['color'] ) : '' );
